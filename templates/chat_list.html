@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Active Chats - College Connect
+{% endblock %}
+
+{% block content %}
+<style>
+    .chat-list-card {
+        background-color: var(--cc-surface) !important;
+        border: 1px solid var(--cc-border) !important;
+        border-radius: 12px !important;
+        transition: all 0.2s ease;
+    }
+    .chat-list-card:hover {
+        border-color: rgba(37, 99, 235, 0.3) !important;
+        transform: scale(0.005);
+    }
+    .btn-cc-chat-open {
+        background-color: var(--cc-primary) !important;
+        border: none !important;
+        font-weight: 600;
+        border-radius: 8px !important;
+        padding: 0.5rem 1.25rem !important;
+        transition: background-color 0.15s ease;
+    }
+    .btn-cc-chat-open:hover {
+        background-color: var(--cc-primary-hover) !important;
+    }
+</style>
+
+<div class="row mt-2 mb-4">
+    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+        
+        <div class="mb-4">
+            <h1 class="h3 fw-bold text-white m-0" style="letter-spacing: -0.02em;">Communication Channels</h1>
+            <p class="m-0 small mt-1" style="color: var(--cc-text-muted);">
+                Select an active, verified node connection pathway below to engage in direct messaging.
+            </p>
+        </div>
+
+        {% if chats %}
+            <div class="d-flex flex-column gap-3">
+                {% for c in chats %}
+                <div class="card  p-3 shadow-sm">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center fw-semibold fs-5" style="width: 44px; height: 44px;">
+                                {{ c[1][0] | upper if c[1] else 'C' }}
+                            </div>
+                            <div>
+                                <h4 class="h6 fw-bold text-white m-0" style="font-size: 1rem;">{{ c[1] }}</h4>
+                                <span class="small font-monospace text-white-50" style="font-size: 0.8rem; color: var(--cc-text-muted) !important;">
+                                    Channel ID Track: #{{ c[0] }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <a href="/chat/{{ c[0] }}" class="btn btn-primary btn-sm btn-cc-chat-open d-inline-flex align-items-center gap-1.5">
+                            Open Thread <i class="bi bi-arrow-right-short fs-5"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="card p-5 text-center border" style="background-color: var(--cc-surface); border-color: var(--cc-border) !important;">
+                <div class="d-inline-flex align-items-center justify-content-center bg-secondary bg-opacity-10 text-muted rounded-circle mb-3 mx-auto" style="width: 56px; height: 56px;">
+                    <i class="bi bi-chat-left-dots fs-3"></i>
+                </div>
+                <h3 class="h6 fw-bold text-white mb-1">No Communication Channels Initialized</h3>
+                <p class="mx-auto mb-0 text-wrap text-white-50 small" style="max-width: 340px; color: var(--cc-text-muted) !important;">
+                    You do not currently possess any verified data links. Complete request processes to populate lines.
+                </p>
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

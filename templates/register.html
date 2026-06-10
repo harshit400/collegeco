@@ -1,0 +1,1720 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create Account - College Connect
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .reg-card {
+        background-color: var(--cc-surface) !important;
+        border: 1px solid var(--cc-border) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    .reg-input, .reg-select {
+        background-color: #0b0f19 !important;
+        border: 1px solid var(--cc-border) !important;
+        color: #ffffff !important;
+        padding: 0.75rem 1rem !important;
+        border-radius: 10px !important;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reg-input:focus, .reg-select:focus {
+        background-color: #0f172a !important;
+        border-color: var(--cc-primary) !important;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25) !important;
+        color: #ffffff !important;
+        outline: none;
+    }
+
+    .reg-input::placeholder {
+        color: var(--cc-text-muted);
+    }
+
+    .reg-select option {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+    }
+
+    .btn-cc-reg {
+        background-color: #10b981 !important;
+        border: none !important;
+        padding: 0.8rem 1.5rem !important;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        border-radius: 10px !important;
+        transition: all 0.2s ease;
+    }
+
+    .btn-cc-reg:hover {
+        background-color: #059669 !important;
+        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
+    }
+
+    #yearBox {
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+</style>
+
+<div class="row justify-content-center my-4">
+    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="card p-4 p-sm-5 reg-card">
+            
+            <div class="text-center mb-4">
+                <div class="d-inline-flex align-items-center justify-content-center bg-success bg-opacity-10 text-success rounded-circle mb-3" style="width: 56px; height: 56px;">
+                    <i class="bi bi-person-plus-fill fs-3"></i>
+                </div>
+                <h2 class="fw-bold text-white h3 mb-2" style="letter-spacing: -0.03em;">Student Registration</h2>
+                <p class="m-0 small text-wrap px-lg-3" style="color: var(--cc-text-muted); line-height: 1.5;">
+                    Establish your credentials within the academic database to engage with local university peers.
+                </p>
+            </div>
+
+            <form method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="form-label small fw-semibold text-white-50 mb-2">Full Identity Name</label>
+                        <input type="text" name="full_name" placeholder="John Doe" class="form-control reg-input" required>
+                    </div>
+
+                    <div class="col-12 col-sm-6">
+                        <label class="form-label small fw-semibold text-white-50 mb-2">Institutional Email</label>
+                        <input type="email" name="email" placeholder="name@university.edu" class="form-control reg-input" required>
+                    </div>
+
+                    <div class="col-12 col-sm-6">
+                        <label class="form-label small fw-semibold text-white-50 mb-2">Phone Contact Line</label>
+                        <input type="text" name="phone" placeholder="+91 XXXXX XXXXX" class="form-control reg-input" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label small fw-semibold text-white-50 mb-2">Affiliated College Hub</label>
+                        <select name="college_name" class="form-select reg-select" required>
+                            <option value="" disabled selected hidden>Choose your institution...</option>
+                            <option value="AAFT University of Media and Arts
+">AAFT University of Media and Arts
+</option>
+<option value="AIPH University
+">AIPH University
+</option>
+<option value="AISECT University, Jharkhand
+">AISECT University, Jharkhand
+</option>
+<option value="AKS University
+">AKS University
+</option>
+<option value="ASBM University
+">ASBM University
+</option>
+<option value="ATLAS SkillTech University
+">ATLAS SkillTech University
+</option>
+<option value="AURO University
+">AURO University
+</option>
+<option value="Abhilashi University
+">Abhilashi University
+</option>
+<option value="Abhyuday University
+">Abhyuday University
+</option>
+<option value="Adamas University
+">Adamas University
+</option>
+<option value="Adani University
+">Adani University
+</option>
+<option value="Adesh University
+">Adesh University
+</option>
+<option value="Adichunchanagiri University
+">Adichunchanagiri University
+</option>
+<option value="Agrawan Heritage University
+">Agrawan Heritage University
+</option>
+<option value="Ahmedabad University
+">Ahmedabad University
+</option>
+<option value="Ajeenkya DY Patil University
+">Ajeenkya DY Patil University
+</option>
+<option value="Akal University
+">Akal University
+</option>
+<option value="Al-Falah University
+">Al-Falah University
+</option>
+<option value="Al-Karim University
+">Al-Karim University
+</option>
+<option value="Alakh Prakash Goyal University
+">Alakh Prakash Goyal University
+</option>
+<option value="Alard University
+">Alard University
+</option>
+<option value="Alliance University
+">Alliance University
+</option>
+<option value="Amaltas University
+">Amaltas University
+</option>
+<option value="Amity University, Gurgaon
+">Amity University, Gurgaon
+</option>
+<option value="Amity University, Gwalior
+">Amity University, Gwalior
+</option>
+<option value="Amity University, Jaipur
+">Amity University, Jaipur
+</option>
+<option value="Amity University, Jharkhand
+">Amity University, Jharkhand
+</option>
+<option value="Amity University, Kolkata
+">Amity University, Kolkata
+</option>
+<option value="Amity University, Mumbai
+">Amity University, Mumbai
+</option>
+<option value="Amity University, Noida
+">Amity University, Noida
+</option>
+<option value="Amity University, Patna
+">Amity University, Patna
+</option>
+<option value="Amity University, Punjab
+">Amity University, Punjab
+</option>
+<option value="Amity University, Raipur
+">Amity University, Raipur
+</option>
+<option value="Amrapali University
+">Amrapali University
+</option>
+<option value="Anant National University
+">Anant National University
+</option>
+<option value="Anjaneya University
+">Anjaneya University
+</option>
+<option value="Annamacharya University
+">Annamacharya University
+</option>
+<option value="Ansal University
+">Ansal University
+</option>
+<option value="Anurag University
+">Anurag University
+</option>
+<option value="Apeejay Stya University
+">Apeejay Stya University
+</option>
+<option value="Apex Professional University
+">Apex Professional University
+</option>
+<option value="Apex University
+">Apex University
+</option>
+<option value="Arka Jain University
+">Arka Jain University
+</option>
+<option value="Arni University
+">Arni University
+</option>
+<option value="Arunachal University of Studies
+">Arunachal University of Studies
+</option>
+<option value="Arunodaya University
+">Arunodaya University
+</option>
+<option value="Aryavart University
+">Aryavart University
+</option>
+<option value="Ashoka University
+">Ashoka University
+</option>
+<option value="Asian International University
+">Asian International University
+</option>
+<option value="Assam Don Bosco University
+">Assam Don Bosco University
+</option>
+<option value="Assam Down Town University
+">Assam Down Town University
+</option>
+<option value="Atharva University
+">Atharva University
+</option>
+<option value="Atmiya University
+">Atmiya University
+</option>
+<option value="Atria University
+">Atria University
+</option>
+<option value="Auniati University
+">Auniati University
+</option>
+<option value="Avantika University
+">Avantika University
+</option>
+<option value="Azim Premji University
+">Azim Premji University
+</option>
+<option value="Azim Premji University
+">Azim Premji University
+</option>
+<option value="B.E.S.T Innovation University
+">B.E.S.T Innovation University
+</option>
+<option value="BML Munjal University
+">BML Munjal University
+</option>
+<option value="Baba Mast Nath University
+">Baba Mast Nath University
+</option>
+<option value="Babu Banarasi Das University
+">Babu Banarasi Das University
+</option>
+<option value="Babu Dinesh Singh University
+">Babu Dinesh Singh University
+</option>
+<option value="Baddi University of Emerging Sciences and Technologies
+">Baddi University of Emerging Sciences and Technologies
+</option>
+<option value="Bahra University
+">Bahra University
+</option>
+<option value="Bareilly International University
+">Bareilly International University
+</option>
+<option value="Bennett University
+">Bennett University
+</option>
+<option value="Bhabha University
+">Bhabha University
+</option>
+<option value="Bhagwan Mahavir University
+">Bhagwan Mahavir University
+</option>
+<option value="Bhagwant Global University
+">Bhagwant Global University
+</option>
+<option value="Bhagwant University
+">Bhagwant University
+</option>
+<option value="Bhaikaka University
+">Bhaikaka University
+</option>
+<option value="Bharti Vishwavidyalay
+">Bharti Vishwavidyalay
+</option>
+<option value="Bhupal Nobles University
+">Bhupal Nobles University
+</option>
+<option value="Bir Tikendrajit University
+">Bir Tikendrajit University
+</option>
+<option value="Birla Global University
+">Birla Global University
+</option>
+<option value="Brainware University
+">Brainware University
+</option>
+<option value="C. U. Shah University
+">C. U. Shah University
+</option>
+<option value="C. V. Raman Global University
+">C. V. Raman Global University
+</option>
+<option value="CEPT University
+">CEPT University
+</option>
+<option value="CMJ University
+">CMJ University
+</option>
+<option value="CMR University
+">CMR University
+</option>
+<option value="CT University, Punjab
+">CT University, Punjab
+</option>
+<option value="Capital University, Jharkhand
+">Capital University, Jharkhand
+</option>
+<option value="Career Point University
+">Career Point University
+</option>
+<option value="Career Point University, Hamirpur
+">Career Point University, Hamirpur
+</option>
+<option value="Centurion University of Technology and Management
+">Centurion University of Technology and Management
+</option>
+<option value="Centurion University of Technology and Management, Andhra Pradesh
+">Centurion University of Technology and Management, Andhra Pradesh
+</option>
+<option value="Chanakya University
+">Chanakya University
+</option>
+<option value="Chandigarh University
+">Chandigarh University
+</option>
+<option value="Chandigarh University, Unnao
+">Chandigarh University, Unnao
+</option>
+<option value="Charotar University of Science and Technology
+">Charotar University of Science and Technology
+</option>
+<option value="Chhatrapati Shivaji Maharaj University
+">Chhatrapati Shivaji Maharaj University
+</option>
+<option value="Chirayu University
+">Chirayu University
+</option>
+<option value="Chitkara University, Himachal Pradesh
+">Chitkara University, Himachal Pradesh
+</option>
+<option value="Chitkara University, Punjab
+">Chitkara University, Punjab
+</option>
+<option value="D Y Patil International University
+">D Y Patil International University
+</option>
+<option value="D. Y. Patil Agriculture and Technical University
+">D. Y. Patil Agriculture and Technical University
+</option>
+<option value="D. Y. Patil University
+">D. Y. Patil University
+</option>
+<option value="DAV University
+">DAV University
+</option>
+<option value="DBS Global University
+">DBS Global University
+</option>
+<option value="DES Pune University
+">DES Pune University
+</option>
+<option value="DIT University
+">DIT University
+</option>
+<option value="DRIEMS University
+">DRIEMS University
+</option>
+<option value="Darshan University
+">Darshan University
+</option>
+<option value="Dayananda Sagar University
+">Dayananda Sagar University
+</option>
+<option value="Desh Bhagat University
+">Desh Bhagat University
+</option>
+<option value="Dev Bhoomi Uttarakhand University
+">Dev Bhoomi Uttarakhand University
+</option>
+<option value="Dev Sanskriti Vishwavidyalaya
+">Dev Sanskriti Vishwavidyalaya
+</option>
+<option value="Dev Sanskriti Vishwavidyalaya
+">Dev Sanskriti Vishwavidyalaya
+</option>
+<option value="Dhamma Dipa International Buddhist University
+">Dhamma Dipa International Buddhist University
+</option>
+<option value="Dhanalakshmi Srinivasan University
+">Dhanalakshmi Srinivasan University
+</option>
+<option value="Dhirubhai Ambani Institute of Information and Communication Technology
+">Dhirubhai Ambani Institute of Information and Communication Technology
+</option>
+<option value="Dr. A.P.J. Abdul Kalam University
+">Dr. A.P.J. Abdul Kalam University
+</option>
+<option value="Dr. C.V. Raman University
+">Dr. C.V. Raman University
+</option>
+<option value="Dr. C.V. Raman University, Bihar
+">Dr. C.V. Raman University, Bihar
+</option>
+<option value="Dr. C.V. Raman University, Khandwa
+">Dr. C.V. Raman University, Khandwa
+</option>
+<option value="Dr. D.Y. Patil Dnyan Prasad
+">Dr. D.Y. Patil Dnyan Prasad
+</option>
+<option value="Dr. K.N.Modi University
+">Dr. K.N.Modi University
+</option>
+<option value="Dr. P. A. Inamdar University
+">Dr. P. A. Inamdar University
+</option>
+<option value="Dr. Preeti Global University
+">Dr. Preeti Global University
+</option>
+<option value="Dr. Subhash University
+">Dr. Subhash University
+</option>
+<option value="Drs. Kiran & Pallavi Patel Global University (KPGU)
+">Drs. Kiran & Pallavi Patel Global University (KPGU)
+</option>
+<option value="Durga Soren University
+">Durga Soren University
+</option>
+<option value="EdTech Skills University
+">EdTech Skills University
+</option>
+<option value="Eklavya University
+">Eklavya University
+</option>
+<option value="Era University
+">Era University
+</option>
+<option value="Eternal University
+">Eternal University
+</option>
+<option value="F.S. University
+">F.S. University
+</option>
+<option value="FLAME University
+">FLAME University
+</option>
+<option value="Future University
+">Future University
+</option>
+<option value="G. M. University
+">G. M. University
+</option>
+<option value="G. S. University
+">G. S. University
+</option>
+<option value="G.H. Raisoni University
+">G.H. Raisoni University
+</option>
+<option value="G.H.Raisoni University
+">G.H.Raisoni University
+</option>
+<option value="GD Goenka University
+">GD Goenka University
+</option>
+<option value="GIET University
+">GIET University
+</option>
+<option value="GLA University
+">GLA University
+</option>
+<option value="GLS University
+">GLS University
+</option>
+<option value="GNA University
+">GNA University
+</option>
+<option value="GSFC University
+">GSFC University
+</option>
+<option value="Galgotias University
+">Galgotias University
+</option>
+<option value="Gandhinagar University
+">Gandhinagar University
+</option>
+<option value="Ganpat University
+">Ganpat University
+</option>
+<option value="Garden City University
+">Garden City University
+</option>
+<option value="Geeta University[171]
+">Geeta University[171]
+</option>
+<option value="Geetanjali University
+">Geetanjali University
+</option>
+<option value="Girijananda Chowdhury University
+">Girijananda Chowdhury University
+</option>
+<option value="Godavari Global University
+">Godavari Global University
+</option>
+<option value="Gokul Global University
+">Gokul Global University
+</option>
+<option value="Gopal Narayan Singh University
+">Gopal Narayan Singh University
+</option>
+<option value="Graphic Era Hill University
+">Graphic Era Hill University
+</option>
+<option value="Gujarat Maritime University
+">Gujarat Maritime University
+</option>
+<option value="Guru Kashi University
+">Guru Kashi University
+</option>
+<option value="Guru Nanak University
+">Guru Nanak University
+</option>
+<option value="Gyanmanjari Innovative University
+">Gyanmanjari Innovative University
+</option>
+<option value="Gyanodaya University
+">Gyanodaya University
+</option>
+<option value="Gyanveer University
+">Gyanveer University
+</option>
+<option value="HRIT University
+">HRIT University
+</option>
+<option value="Haridwar University
+">Haridwar University
+</option>
+<option value="Himalayan University
+">Himalayan University
+</option>
+<option value="Homoeopathy University
+">Homoeopathy University
+</option>
+<option value="I.E.S. University
+">I.E.S. University
+</option>
+<option value="ICFAI University
+">ICFAI University
+</option>
+<option value="ICFAI University, Himachal Pradesh
+">ICFAI University, Himachal Pradesh
+</option>
+<option value="ICFAI University, Jaipur
+">ICFAI University, Jaipur
+</option>
+<option value="ICFAI University, Jharkhand
+">ICFAI University, Jharkhand
+</option>
+<option value="ICFAI University, Raipur
+">ICFAI University, Raipur
+</option>
+<option value="IEC University
+">IEC University
+</option>
+<option value="IFTM University
+">IFTM University
+</option>
+<option value="IILM University
+">IILM University
+</option>
+<option value="IILM University
+">IILM University
+</option>
+<option value="IIMT University
+">IIMT University
+</option>
+<option value="IMS Unison University
+">IMS Unison University
+</option>
+<option value="ISBM University
+">ISBM University
+</option>
+<option value="ITM (SLS) Baroda University
+">ITM (SLS) Baroda University
+</option>
+<option value="ITM Skills University
+">ITM Skills University
+</option>
+<option value="ITM University, Gwalior
+">ITM University, Gwalior
+</option>
+<option value="ITM University, Raipur
+">ITM University, Raipur
+</option>
+<option value="ITM Vocational University
+">ITM Vocational University
+</option>
+<option value="Indian Institute of Health Management Research
+">Indian Institute of Health Management Research
+</option>
+<option value="Indian Institute of Public Health, Gandhinagar
+">Indian Institute of Public Health, Gandhinagar
+</option>
+<option value="Indira Gandhi Technological and Medical Sciences University
+">Indira Gandhi Technological and Medical Sciences University
+</option>
+<option value="Indrashil University
+">Indrashil University
+</option>
+<option value="Indus International University
+">Indus International University
+</option>
+<option value="Indus University
+">Indus University
+</option>
+<option value="Institute of Advanced Research
+">Institute of Advanced Research
+</option>
+<option value="Institute of Chartered Financial Analysts of India University, Meghalaya
+">Institute of Chartered Financial Analysts of India University, Meghalaya
+</option>
+<option value="Institute of Chartered Financial Analysts of India University, Mizoram
+">Institute of Chartered Financial Analysts of India University, Mizoram
+</option>
+<option value="Institute of Chartered Financial Analysts of India University, Nagaland
+">Institute of Chartered Financial Analysts of India University, Nagaland
+</option>
+<option value="Institute of Chartered Financial Analysts of India University, Tripura
+">Institute of Chartered Financial Analysts of India University, Tripura
+</option>
+<option value="Integral University
+">Integral University
+</option>
+<option value="Invertis University
+">Invertis University
+</option>
+<option value="J. N. C. T professional University
+">J. N. C. T professional University
+</option>
+<option value="J.G. University
+">J.G. University
+</option>
+<option value="J.S. University
+">J.S. University
+</option>
+<option value="JECRC University
+">JECRC University
+</option>
+<option value="JIS University
+">JIS University
+</option>
+<option value="JK Lakshmipat University
+">JK Lakshmipat University
+</option>
+<option value="JSPM University
+">JSPM University
+</option>
+<option value="JSS Science and Technology University
+">JSS Science and Technology University
+</option>
+<option value="JSS University
+">JSS University
+</option>
+<option value="Jagadguru Rambhadracharya Handicapped University
+">Jagadguru Rambhadracharya Handicapped University
+</option>
+<option value="Jagan Nath University
+">Jagan Nath University
+</option>
+<option value="Jagannath University
+">Jagannath University
+</option>
+<option value="Jagran Lakecity University
+">Jagran Lakecity University
+</option>
+<option value="Jai Minesh Adivasi University
+">Jai Minesh Adivasi University
+</option>
+<option value="Jaipur National University
+">Jaipur National University
+</option>
+<option value="Jayoti Vidyapeeth Women's University
+">Jayoti Vidyapeeth Women's University
+</option>
+<option value="Jaypee University
+">Jaypee University
+</option>
+<option value="Jaypee University of Engineering and Technology
+">Jaypee University of Engineering and Technology
+</option>
+<option value="Jaypee University of Information Technology
+">Jaypee University of Information Technology
+</option>
+<option value="Jeppiaar University
+">Jeppiaar University
+</option>
+<option value="Jharkhand Rai University
+">Jharkhand Rai University
+</option>
+<option value="Jigyasa University
+">Jigyasa University
+</option>
+<option value="Jodhpur National University
+">Jodhpur National University
+</option>
+<option value="K. K. Modi University
+">K. K. Modi University
+</option>
+<option value="K. K. University
+">K. K. University
+</option>
+<option value="K. N. University
+">K. N. University
+</option>
+<option value="K.M. (Krishna Mohan) University
+">K.M. (Krishna Mohan) University
+</option>
+<option value="K.R. Mangalam University
+">K.R. Mangalam University
+</option>
+<option value="KLE Technological University
+">KLE Technological University
+</option>
+<option value="Kadi Sarva Vishwavidyalaya
+">Kadi Sarva Vishwavidyalaya
+</option>
+<option value="Kalinga University
+">Kalinga University
+</option>
+<option value="Karnavati University
+">Karnavati University
+</option>
+<option value="Kaveri University
+">Kaveri University
+</option>
+<option value="Kaziranga University
+">Kaziranga University
+</option>
+<option value="Khaja Bandanawaz University
+">Khaja Bandanawaz University
+</option>
+<option value="Khongnangthaba University
+">Khongnangthaba University
+</option>
+<option value="Kishkinda University
+">Kishkinda University
+</option>
+<option value="Krea University
+">Krea University
+</option>
+<option value="Krishnaguru Adhyatmik Vishvavidyalaya
+">Krishnaguru Adhyatmik Vishvavidyalaya
+</option>
+<option value="LNCT University
+">LNCT University
+</option>
+<option value="LNCT Vidhyapeeth University
+">LNCT Vidhyapeeth University
+</option>
+<option value="Lakulish Yoga University
+">Lakulish Yoga University
+</option>
+<option value="Lamrin Tech Skills University
+">Lamrin Tech Skills University
+</option>
+<option value="Lok Jagruti Kendra University
+">Lok Jagruti Kendra University
+</option>
+<option value="Lokbharti University for Rural Innovation
+">Lokbharti University for Rural Innovation
+</option>
+<option value="Lords University
+">Lords University
+</option>
+<option value="Lovely Professional University
+">Lovely Professional University
+</option>
+<option value="M. K. University
+">M. K. University
+</option>
+<option value="M. S. Ramaiah University of Applied Sciences
+">M. S. Ramaiah University of Applied Sciences
+</option>
+<option value="MATS University
+">MATS University
+</option>
+<option value="MGM University
+">MGM University
+</option>
+<option value="MIT - World Peace University
+">MIT - World Peace University
+</option>
+<option value="MIT Art, Design and Technology University
+">MIT Art, Design and Technology University
+</option>
+<option value="MIT Vishwaprayag University, Solapur
+">MIT Vishwaprayag University, Solapur
+</option>
+<option value="MNR University
+">MNR University
+</option>
+<option value="MVN University
+">MVN University
+</option>
+<option value="Madhav University
+">Madhav University
+</option>
+<option value="Madhyanchal Professional University
+">Madhyanchal Professional University
+</option>
+<option value="Maganbhai Adenwala Mahagujarat University
+">Maganbhai Adenwala Mahagujarat University
+</option>
+<option value="Mahakaushal University
+">Mahakaushal University
+</option>
+<option value="Mahapurusha Srimanta Sankaradeva Viswavidyalaya
+">Mahapurusha Srimanta Sankaradeva Viswavidyalaya
+</option>
+<option value="Maharaj Vinayak Global University
+">Maharaj Vinayak Global University
+</option>
+<option value="Maharaja Agrasen Himalayan Garhwal University
+">Maharaja Agrasen Himalayan Garhwal University
+</option>
+<option value="Maharaja Agrasen University
+">Maharaja Agrasen University
+</option>
+<option value="Maharishi Arvind University, Jaipur
+">Maharishi Arvind University, Jaipur
+</option>
+<option value="Maharishi Mahesh Yogi Vedic University
+">Maharishi Mahesh Yogi Vedic University
+</option>
+<option value="Maharishi Markandeshwar University, Sadopur
+">Maharishi Markandeshwar University, Sadopur
+</option>
+<option value="Maharishi Markandeshwar University, Solan
+">Maharishi Markandeshwar University, Solan
+</option>
+<option value="Maharishi University of Information Technology
+">Maharishi University of Information Technology
+</option>
+<option value="Maharishi University of Management and Technology
+">Maharishi University of Management and Technology
+</option>
+<option value="Mahatma Gandhi University
+">Mahatma Gandhi University
+</option>
+<option value="Mahatma Gandhi University of Medical Sciences & Technology
+">Mahatma Gandhi University of Medical Sciences & Technology
+</option>
+<option value="Mahatma Jyoti Rao Phoole University
+">Mahatma Jyoti Rao Phoole University
+</option>
+<option value="Mahaveer University
+">Mahaveer University
+</option>
+<option value="Mahayogi Gorakhnath University
+">Mahayogi Gorakhnath University
+</option>
+<option value="Mahindra University
+">Mahindra University
+</option>
+<option value="Major S. D. Singh University
+">Major S. D. Singh University
+</option>
+<option value="Malla Reddy University
+">Malla Reddy University
+</option>
+<option value="Malwanchal University
+">Malwanchal University
+</option>
+<option value="Manav Bharti University
+">Manav Bharti University
+</option>
+<option value="Manav Rachna University
+">Manav Rachna University
+</option>
+<option value="Mandsaur University
+">Mandsaur University
+</option>
+<option value="Mangalayatan University
+">Mangalayatan University
+</option>
+<option value="Mangalayatan University
+">Mangalayatan University
+</option>
+<option value="Manipal University Jaipur
+">Manipal University Jaipur
+</option>
+<option value="Manipur International University
+">Manipur International University
+</option>
+<option value="Mansarovar Global University
+">Mansarovar Global University
+</option>
+<option value="Martin Luther Christian University
+">Martin Luther Christian University
+</option>
+<option value="Marwadi University
+">Marwadi University
+</option>
+<option value="Mata Gujri University
+">Mata Gujri University
+</option>
+<option value="Mata Tripura Sundari Open University
+">Mata Tripura Sundari Open University
+</option>
+<option value="Maulana Azad University
+">Maulana Azad University
+</option>
+<option value="Maya Devi University
+">Maya Devi University
+</option>
+<option value="Medhavi Skills University
+">Medhavi Skills University
+</option>
+<option value="Medi-Caps University
+">Medi-Caps University
+</option>
+<option value="Mewar University
+">Mewar University
+</option>
+<option value="Mind Power University
+">Mind Power University
+</option>
+<option value="Mody University of Science and Technology
+">Mody University of Science and Technology
+</option>
+<option value="Mohammad Ali Jauhar University
+">Mohammad Ali Jauhar University
+</option>
+<option value="Mohan Babu University
+">Mohan Babu University
+</option>
+<option value="Monad University
+">Monad University
+</option>
+<option value="Monark University
+">Monark University
+</option>
+<option value="Motherhood University
+">Motherhood University
+</option>
+<option value="NICMAR University
+">NICMAR University
+</option>
+<option value="NICMAR University of Construction Studies
+">NICMAR University of Construction Studies
+</option>
+<option value="NIILM University, Kaithal
+">NIILM University, Kaithal
+</option>
+<option value="NIIT University
+">NIIT University
+</option>
+<option value="NIMS University
+">NIMS University
+</option>
+<option value="NIST University
+">NIST University
+</option>
+<option value="Navrachana University
+">Navrachana University
+</option>
+<option value="Neotia University
+">Neotia University
+</option>
+<option value="Netaji Subhas University
+">Netaji Subhas University
+</option>
+<option value="Nirma University
+">Nirma University
+</option>
+<option value="Nirwan University
+">Nirwan University
+</option>
+<option value="Noble University
+">Noble University
+</option>
+<option value="Noida International University
+">Noida International University
+</option>
+<option value="North East Christian University
+">North East Christian University
+</option>
+<option value="North East Frontier Technical University
+">North East Frontier Technical University
+</option>
+<option value="O.P. Jindal University
+">O.P. Jindal University
+</option>
+<option value="OPJS University
+">OPJS University
+</option>
+<option value="Om Sterling Global University
+">Om Sterling Global University
+</option>
+<option value="Oriental University
+">Oriental University
+</option>
+<option value="P P Savani University
+">P P Savani University
+</option>
+<option value="P.K. University
+">P.K. University
+</option>
+<option value="PDM University
+">PDM University
+</option>
+<option value="PES University
+">PES University
+</option>
+<option value="Pacific Academy of Higher Education & Research (PAHER)
+">Pacific Academy of Higher Education & Research (PAHER)
+</option>
+<option value="Pacific University
+">Pacific University
+</option>
+<option value="Pandit Deendayal Energy University
+">Pandit Deendayal Energy University
+</option>
+<option value="Parul University
+">Parul University
+</option>
+<option value="People's University
+">People's University
+</option>
+<option value="Pillai University
+">Pillai University
+</option>
+<option value="Pimpri Chinchwad University
+">Pimpri Chinchwad University
+</option>
+<option value="Plaksha University
+">Plaksha University
+</option>
+<option value="Plastindia International University
+">Plastindia International University
+</option>
+<option value="Poornima University
+">Poornima University
+</option>
+<option value="Pragjyotishpur University
+">Pragjyotishpur University
+</option>
+<option value="Pragyan International University
+">Pragyan International University
+</option>
+<option value="Pratap University
+">Pratap University
+</option>
+<option value="Presidency University
+">Presidency University
+</option>
+<option value="Prestige University
+">Prestige University
+</option>
+<option value="Quantum University
+">Quantum University
+</option>
+<option value="REVA University
+">REVA University
+</option>
+<option value="RIMT University
+">RIMT University
+</option>
+<option value="RK University
+">RK University
+</option>
+<option value="RKDF University
+">RKDF University
+</option>
+<option value="RNB Global University
+">RNB Global University
+</option>
+<option value="RV University
+">RV University
+</option>
+<option value="Rabindranath Tagore University
+">Rabindranath Tagore University
+</option>
+<option value="Radha Govind University
+">Radha Govind University
+</option>
+<option value="Raffles University
+">Raffles University
+</option>
+<option value="Raffles University
+">Raffles University
+</option>
+<option value="Rai Technology University
+">Rai Technology University
+</option>
+<option value="Rai University
+">Rai University
+</option>
+<option value="Rajju Shroff Rofel University (RSRU)
+">Rajju Shroff Rofel University (RSRU)
+</option>
+<option value="Ram Krishna Dharmarth Foundation (RKDF) University
+">Ram Krishna Dharmarth Foundation (RKDF) University
+</option>
+<option value="Rama University
+">Rama University
+</option>
+<option value="Ramchandra Chandravansi University
+">Ramchandra Chandravansi University
+</option>
+<option value="Ramdeobaba University
+">Ramdeobaba University
+</option>
+<option value="Ras Bihari Bose Subharti University
+">Ras Bihari Bose Subharti University
+</option>
+<option value="Rayat-Bahra University
+">Rayat-Bahra University
+</option>
+<option value="Renaissance University
+">Renaissance University
+</option>
+<option value="Rishihood University
+">Rishihood University
+</option>
+<option value="Royal Global University
+">Royal Global University
+</option>
+<option value="Rungta International Skills University
+">Rungta International Skills University
+</option>
+<option value="S. K. S. International University
+">S. K. S. International University
+</option>
+<option value="SAM Global University
+">SAM Global University
+</option>
+<option value="SDGI Global University
+">SDGI Global University
+</option>
+<option value="SKIPS University
+">SKIPS University
+</option>
+<option value="SR University
+">SR University
+</option>
+<option value="SRM University, Andhra Pradesh
+">SRM University, Andhra Pradesh
+</option>
+<option value="SRM University, Haryana
+">SRM University, Haryana
+</option>
+<option value="SRM University, Sikkim
+">SRM University, Sikkim
+</option>
+<option value="Sabarmati University
+">Sabarmati University
+</option>
+<option value="Sage University
+">Sage University
+</option>
+<option value="Sai Nath University
+">Sai Nath University
+</option>
+<option value="Sai Tirupati University
+">Sai Tirupati University
+</option>
+<option value="Sai University
+">Sai University
+</option>
+<option value="Sandip University, Nashik
+">Sandip University, Nashik
+</option>
+<option value="Sandip University, Sijoul
+">Sandip University, Sijoul
+</option>
+<option value="Sangam University
+">Sangam University
+</option>
+<option value="Sanjay Ghodawat University
+">Sanjay Ghodawat University
+</option>
+<option value="Sanjeev Agrawal Global Educational (SAGE) University
+">Sanjeev Agrawal Global Educational (SAGE) University
+</option>
+<option value="Sanjivani University
+">Sanjivani University
+</option>
+<option value="Sankalchand Patel University
+">Sankalchand Patel University
+</option>
+<option value="Sanskaram University
+">Sanskaram University
+</option>
+<option value="Sanskriti University
+">Sanskriti University
+</option>
+<option value="Sant Baba Bhag Singh University
+">Sant Baba Bhag Singh University
+</option>
+<option value="Sapthagiri NPS University
+">Sapthagiri NPS University
+</option>
+<option value="Sarala Birla University
+">Sarala Birla University
+</option>
+<option value="Sardar Bhagwan Singh University
+">Sardar Bhagwan Singh University
+</option>
+<option value="Sardar Patel University
+">Sardar Patel University
+</option>
+<option value="Sardar Vallabhbhai Global University
+">Sardar Vallabhbhai Global University
+</option>
+<option value="Saroj International University
+">Saroj International University
+</option>
+<option value="Sarvajanik University
+">Sarvajanik University
+</option>
+<option value="Sarvepalli Radhakrishnan University
+">Sarvepalli Radhakrishnan University
+</option>
+<option value="Saveetha Amaravati University
+">Saveetha Amaravati University
+</option>
+<option value="Scope Global Skills University
+">Scope Global Skills University
+</option>
+<option value="Seacom Skills University
+">Seacom Skills University
+</option>
+<option value="Sharda University
+">Sharda University
+</option>
+<option value="Sharda University Agra
+">Sharda University Agra
+</option>
+<option value="Sharnbasva University
+">Sharnbasva University
+</option>
+<option value="Shiv Nadar University, Chennai
+">Shiv Nadar University, Chennai
+</option>
+<option value="Shobhit University
+">Shobhit University
+</option>
+<option value="Shoolini University of Biotechnology and Management Sciences
+">Shoolini University of Biotechnology and Management Sciences
+</option>
+<option value="Shree Guru Gobind Singh Tricentenary University
+">Shree Guru Gobind Singh Tricentenary University
+</option>
+<option value="Shreyarth University
+">Shreyarth University
+</option>
+<option value="Shri Davara University
+">Shri Davara University
+</option>
+<option value="Shri Dharmasthala Manjunatheshwara University
+">Shri Dharmasthala Manjunatheshwara University
+</option>
+<option value="Shri Guru Ram Rai University
+">Shri Guru Ram Rai University
+</option>
+<option value="Shri Jagdish Prasad Jhabarmal Tibrewala University
+">Shri Jagdish Prasad Jhabarmal Tibrewala University
+</option>
+<option value="Shri Kallaji Vedic Vishvavidyalaya
+">Shri Kallaji Vedic Vishvavidyalaya
+</option>
+<option value="Shri Khushal Das University
+">Shri Khushal Das University
+</option>
+<option value="Shri Krishna University
+">Shri Krishna University
+</option>
+<option value="Shri Ramswaroop Memorial University
+">Shri Ramswaroop Memorial University
+</option>
+<option value="Shri Rawatpura Sarkar University
+">Shri Rawatpura Sarkar University
+</option>
+<option value="Shri Shankaracharya Professional University
+">Shri Shankaracharya Professional University
+</option>
+<option value="Shri Vaishnav Vidyapeeth Vishwavidyalaya
+">Shri Vaishnav Vidyapeeth Vishwavidyalaya
+</option>
+<option value="Shri Venkateshwara University
+">Shri Venkateshwara University
+</option>
+<option value="Shridhar University
+">Shridhar University
+</option>
+<option value="Shrimati Manjira Devi University
+">Shrimati Manjira Devi University
+</option>
+<option value="Shubham University
+">Shubham University
+</option>
+<option value="Shyam University
+">Shyam University
+</option>
+<option value="Sigma University
+">Sigma University
+</option>
+<option value="Sikkim Alpine University
+">Sikkim Alpine University
+</option>
+<option value="Sikkim Global Technical University
+">Sikkim Global Technical University
+</option>
+<option value="Sikkim International University
+">Sikkim International University
+</option>
+<option value="Sikkim Manipal University
+">Sikkim Manipal University
+</option>
+<option value="Sikkim Professional University
+">Sikkim Professional University
+</option>
+<option value="Sikkim Sardar Patel University
+">Sikkim Sardar Patel University
+</option>
+<option value="Sikkim Skill University
+">Sikkim Skill University
+</option>
+<option value="Silicon University
+">Silicon University
+</option>
+<option value="Silver Oak University
+">Silver Oak University
+</option>
+<option value="Singhania University
+">Singhania University
+</option>
+<option value="Sir Padampat Singhania University
+">Sir Padampat Singhania University
+</option>
+<option value="Sister Nivedita University
+">Sister Nivedita University
+</option>
+<option value="Somaiya Vidyavihar University
+">Somaiya Vidyavihar University
+</option>
+<option value="Sona Devi University
+">Sona Devi University
+</option>
+<option value="Sparsh Himalaya University
+">Sparsh Himalaya University
+</option>
+<option value="Spicer Adventist University
+">Spicer Adventist University
+</option>
+<option value="Sreenidhi University
+">Sreenidhi University
+</option>
+<option value="Sri Aurobindo University
+">Sri Aurobindo University
+</option>
+<option value="Sri Balaji University, Pune
+">Sri Balaji University, Pune
+</option>
+<option value="Sri Guru Granth Sahib World University
+">Sri Guru Granth Sahib World University
+</option>
+<option value="Sri Guru Ram Das University of Health Sciences, Sri Amritsar
+">Sri Guru Ram Das University of Health Sciences, Sri Amritsar
+</option>
+<option value="Sri Jagadhguru Murugarajendra University
+">Sri Jagadhguru Murugarajendra University
+</option>
+<option value="Sri Sai University
+">Sri Sai University
+</option>
+<option value="Sri Sathya Sai University for Human Excellence
+">Sri Sathya Sai University for Human Excellence
+</option>
+<option value="Sri Satya Sai University of Technology & Medical Sciences
+">Sri Satya Sai University of Technology & Medical Sciences
+</option>
+<option value="Sri Sri University
+">Sri Sri University
+</option>
+<option value="Srinivas University
+">Srinivas University
+</option>
+<option value="St. Joseph University
+">St. Joseph University
+</option>
+<option value="St. Joseph's University, Bengaluru
+">St. Joseph's University, Bengaluru
+</option>
+<option value="St. Xavier's University, Kolkata
+">St. Xavier's University, Kolkata
+</option>
+<option value="Starex University
+">Starex University
+</option>
+<option value="Sunrise University
+">Sunrise University
+</option>
+<option value="Surajmal University
+">Surajmal University
+</option>
+<option value="Surendranagar University
+">Surendranagar University
+</option>
+<option value="Suresh Gyan Vihar University
+">Suresh Gyan Vihar University
+</option>
+<option value="Swami Rama Himalayan University
+">Swami Rama Himalayan University
+</option>
+<option value="Swami Vivekanand Subharti University
+">Swami Vivekanand Subharti University
+</option>
+<option value="Swami Vivekanand University
+">Swami Vivekanand University
+</option>
+<option value="Swami Vivekanand University
+">Swami Vivekanand University
+</option>
+<option value="Swami Vivekananda University, Barrackpore">Swami Vivekananda University, Barrackpore</option>
+<option value="Swami Vivekananda Yoga Anusandhana Samsthana (S-VYASA)
+">Swami Vivekananda Yoga Anusandhana Samsthana (S-VYASA)
+</option>
+<option value="Swaminarayan University
+">Swaminarayan University
+</option>
+<option value="Swarnim Startup & Innovation University
+">Swarnim Startup & Innovation University
+</option>
+<option value="Symbiosis Skills and Professional University
+">Symbiosis Skills and Professional University
+</option>
+<option value="Symbiosis University of Applied Sciences
+">Symbiosis University of Applied Sciences
+</option>
+<option value="T. S. Mishra University
+">T. S. Mishra University
+</option>
+<option value="Tantia University
+">Tantia University
+</option>
+<option value="TeamLease Skills University
+">TeamLease Skills University
+</option>
+<option value="Techno Global University
+">Techno Global University
+</option>
+<option value="Techno Global University
+">Techno Global University
+</option>
+<option value="Techno India University
+">Techno India University
+</option>
+<option value="Techno India University
+">Techno India University
+</option>
+<option value="Teerthanker Mahaveer University
+">Teerthanker Mahaveer University
+</option>
+<option value="The Apollo University
+">The Apollo University
+</option>
+<option value="The Aryavart International University
+">The Aryavart International University
+</option>
+<option value="The Charutar Vidya Mandal(CVM) University
+">The Charutar Vidya Mandal(CVM) University
+</option>
+<option value="The Global Open University Nagaland
+">The Global Open University Nagaland
+</option>
+<option value="The Global University
+">The Global University
+</option>
+<option value="The Glocal UniversityUnited University
+">The Glocal UniversityUnited University
+</option>
+<option value="The ICFAI University Sikkim
+">The ICFAI University Sikkim
+</option>
+<option value="The NorthCap University
+">The NorthCap University
+</option>
+<option value="The SVKM NMIMS Global University
+">The SVKM NMIMS Global University
+</option>
+<option value="Transstadia University
+">Transstadia University
+</option>
+<option value="UPL University of Sustainable Technology
+">UPL University of Sustainable Technology
+</option>
+<option value="Uka Tarsadia University
+">Uka Tarsadia University
+</option>
+<option value="Universal Ai University
+">Universal Ai University
+</option>
+<option value="University of Engineering & Management (UEM), Kolkata
+">University of Engineering & Management (UEM), Kolkata
+</option>
+<option value="University of Engineering & Management, Jaipur
+">University of Engineering & Management, Jaipur
+</option>
+<option value="University of Engineering and Technology
+">University of Engineering and Technology
+</option>
+<option value="University of Patanjali
+">University of Patanjali
+</option>
+<option value="University of Petroleum and Energy Studies
+">University of Petroleum and Energy Studies
+</option>
+<option value="University of Science and Technology, MeghalayaÂ (USTM)
+">University of Science and Technology, MeghalayaÂ (USTM)
+</option>
+<option value="University of Technology and Management
+">University of Technology and Management
+</option>
+<option value="University of Technology, Jaipur
+">University of Technology, Jaipur
+</option>
+<option value="University of Trans-Disciplinary Health Sciences and Technology
+">University of Trans-Disciplinary Health Sciences and Technology
+</option>
+<option value="Usha Martin University
+">Usha Martin University
+</option>
+<option value="Uttaranchal University
+">Uttaranchal University
+</option>
+<option value="VIT Bhopal University
+">VIT Bhopal University
+</option>
+<option value="VIT-AP University
+">VIT-AP University
+</option>
+<option value="Vanita Vishram Women's University
+">Vanita Vishram Women's University
+</option>
+<option value="Varun Arjun University
+">Varun Arjun University
+</option>
+<option value="Vasireddy Venkatadri International Technological University
+">Vasireddy Venkatadri International Technological University
+</option>
+<option value="Veltech University
+">Veltech University
+</option>
+<option value="Venkateshwara Open University
+">Venkateshwara Open University
+</option>
+<option value="Vidhyadeep University
+">Vidhyadeep University
+</option>
+<option value="Vidya University
+">Vidya University
+</option>
+<option value="Vidyashilp University
+">Vidyashilp University
+</option>
+<option value="Vikrant University
+">Vikrant University
+</option>
+<option value="Vishwakarma University
+">Vishwakarma University
+</option>
+<option value="Vivek University
+">Vivek University
+</option>
+<option value="Vivekananda Global University
+">Vivekananda Global University
+</option>
+<option value="William Carey University
+">William Carey University
+</option>
+<option value="World University of Design
+">World University of Design
+</option>
+<option value="Woxsen University
+">Woxsen University
+</option>
+<option value="Xavier University
+">Xavier University
+</option>
+<option value="Xavier University
+">Xavier University
+</option>
+<option value="YBN University
+">YBN University
+</option>
+<option value="akmtya University
+">akmtya University
+</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label small fw-semibold text-white-50 mb-2">Course Track / Major Specialization</label>
+                        <input type="text" name="course" placeholder="e.g., B.Tech Computer Science" class="form-control reg-input" required>
+                    </div>
+
+                    <div class="col-12 col-sm-6">
+                        <label class="form-label small fw-semibold text-white-50 mb-2">Academic Status Matrix</label>
+                        <select name="admission_type" id="admission_type" class="form-select reg-select" required>
+                            <option value="" disabled selected hidden>Select identity relationship...</option>
+                            <option value="Old Student">Already Pursuing College</option>
+                            <option value="New Admission">Trying For Admission</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-sm-6 align-self-end" id="yearBox">
+                        <label class="form-label small fw-semibold text-white-50 mb-2">Current Stream Term Year</label>
+                        <select name="year" class="form-select reg-select">
+                            <option value="" selected>Select Year (Optional if applicant)</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label small fw-semibold text-white-50 mb-2">System Passphrase Credentials</label>
+                        <input type="password" name="password" placeholder="••••••••" class="form-control reg-input" required>
+                    </div>
+
+                    <div class="col-12 mt-4">
+                        <button class="btn btn-success w-100 btn-cc-reg d-flex align-items-center justify-content-center gap-2">
+                            Initialize Portal Profile Account <i class="bi bi-arrow-right-short fs-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="text-center mt-4 pt-3 border-top" style="border-color: var(--cc-border) !important;">
+                <p class="m-0 small" style="color: var(--cc-text-muted);">
+                    Already maintain an active security profile? 
+                    <a href="/login" class="text-decoration-none fw-semibold text-primary ms-1">Access Credentials</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const admissionSelector = document.getElementById('admission_type');
+        const yearSelectionBox = document.getElementById('yearBox');
+
+        function toggleYearDisplay() {
+            if (admissionSelector.value === "New Admission") {
+                yearSelectionBox.style.opacity = "0";
+                yearSelectionBox.style.transform = "translateY(-4px)";
+                setTimeout(() => {
+                    yearSelectionBox.style.visibility = "hidden";
+                    yearSelectionBox.style.position = "absolute";
+                }, 200);
+            } else {
+                yearSelectionBox.style.position = "relative";
+                yearSelectionBox.style.visibility = "visible";
+                setTimeout(() => {
+                    yearSelectionBox.style.opacity = "1";
+                    yearSelectionBox.style.transform = "translateY(0)";
+                }, 5);
+            }
+        }
+        admissionSelector.addEventListener('change', toggleYearDisplay);
+        toggleYearDisplay();
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}
+No Senior Students Available - College Connect
+{% endblock %}
+
+{% block content %}
+<style>
+    .error-panel-card {
+        background-color: var(--cc-surface) !important;
+        border: 1px solid rgba(239, 68, 68, 0.15) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4) !important;
+    }
+    .btn-cc-fallback {
+        background-color: transparent !important;
+        color: #ffffff !important;
+        border: 1px solid var(--cc-border) !important;
+        padding: 0.75rem 1.5rem !important;
+        border-radius: 10px !important;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+    .btn-cc-fallback:hover {
+        background-color: rgba(255, 255, 255, 0.04) !important;
+        border-color: var(--cc-text-muted) !important;
+    }
+</style>
+
+<div class="row justify-content-center my-5">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow p-4 p-sm-5 text-center error-panel-card">
+            
+            <div class="d-inline-flex align-items-center justify-content-center bg-danger bg-opacity-10 text-danger rounded-circle mb-4" style="width: 64px; height: 64px;">
+                <i class="bi bi-exclamation-octagon-fill fs-2"></i>
+            </div>
+
+            <h2 class="fw-bold text-white h3 mb-3" style="letter-spacing: -0.02em;">
+                No Seniors Registered
+            </h2>
+
+            <p class="text-white-50 small mb-3 px-sm-2" style="line-height: 1.6;">
+                Currently, there are no verified upperclassmen profile lines anchored within the network map for 
+                <strong class="text-white font-monospace bg-dark px-2 py-1 rounded border border-secondary border-opacity-25">{{ college }}</strong>.
+            </p>
+
+            <div class="alert bg-danger bg-opacity-5 border border-danger border-opacity-10 p-3 rounded-3 text-start mb-4">
+                <p class="m-0 small text-danger-subtle d-flex gap-2">
+                    <i class="bi bi-shield-slash-fill flex-shrink-0 mt-0.5"></i>
+                    <span><strong>Workflow Gate Engaged:</strong> The gateway payment interface remains securely locked until at least one senior anchor attaches to this network node to process outbound integration requests.</span>
+                </p>
+            </div>
+
+            <a href="/profile" class="btn btn-cc-fallback w-100 d-inline-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-grid-1x2-fill"></i> Return to Profile Workspace
+            </a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

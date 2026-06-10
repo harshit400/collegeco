@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Privacy Policy - College Connect
+{% endblock %}
+
+{% block content %}
+<!-- Bootstrap Icons CDN Connection -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+    .policy-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .policy-card {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .policy-section-title {
+        color: #1e3a8a;
+        font-weight: 600;
+        margin-top: 1.75rem;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .policy-meta-text {
+        font-size: 0.85rem;
+        color: #64748b;
+    }
+</style>
+
+<div class="container my-4 policy-container">
+    <div class="card p-4 p-md-5 policy-card text-dark">
+        
+        <!-- HEADER BLOCK -->
+        <div class="text-center border-bottom pb-4 mb-4">
+            <div class="d-inline-flex align-items-center justify-content-center bg-secondary bg-opacity-10 text-secondary rounded-circle mb-2" style="width: 56px; height: 56px;">
+                <i class="bi bi-shield-lock-fill fs-3 text-primary"></i>
+            </div>
+            <h2 class="fw-bold text-primary mb-1">Privacy Policy</h2>
+            <p class="policy-meta-text m-0">Last Updated: June 7, 2026</p>
+        </div>
+
+        <!-- INTRODUCTION -->
+        <p class="text-muted small">
+            Welcome to College Connect ("we," "our," or "us"). We are fully dedicated to protecting your personal information and maintaining your privacy. This Privacy Policy details how your personal datasets are compiled, structuralized, and secured when you access our platform or engage with our matching network systems.
+        </p>
+
+        <!-- 1. DATA WE COLLECT -->
+        <h4 class="h5 policy-section-title">
+            <i class="bi bi-folder-check text-primary"></i> 1. Information We Collect
+        </h4>
+        <p class="text-muted small mb-2">To provide a secure peer network mapping layout across institutional tracks, we process the following standard data vectors:</p>
+        <ul class="text-muted small ps-4">
+            <li class="mb-1"><strong>Account Profile Parameters:</strong> Full name, institutional or personal email addresses, phone contacts, and educational curriculum tracks.</li>
+            <li class="mb-1"><strong>Academic Credentials (Seniors):</strong> Verifiable identity details used to authenticate your active "Old Student" campus profile tier.</li>
+            <li class="mb-1"><strong>Communication Trails:</strong> Encryption-shielded textual data logs sent back and forth within our peer chat interface environments.</li>
+        </ul>
+
+        <!-- 2. HOW WE USE YOUR DATA -->
+        <h4 class="h5 policy-section-title">
+            <i class="bi bi-gear-fill text-primary"></i> 2. Operational Data Processing
+        </h4>
+        <p class="text-muted small mb-2">Your information is systematically limited to core performance functions including:</p>
+        <ul class="text-muted small ps-4">
+            <li class="mb-1">Validating and mapping inbound applicant request queues cleanly to your specific campus node tracking deck.</li>
+            <li class="mb-1">Opening up live messaging sockets and dynamic data shunts between paired users once a connection request is accepted.</li>
+            <li class="mb-1">Analyzing system performance speeds, maintaining system security patches, and mitigating platform token abuse or spamming vectors.</li>
+        </ul>
+
+        <!-- 3. FINANCIAL & TRANSACTION SECURITY -->
+        <h4 class="h5 policy-section-title">
+            <i class="bi bi-credit-card text-primary"></i> 3. Gateway & Transaction Safety
+        </h4>
+        <p class="text-muted small">
+            All user connection fees are handled via our integration with <strong>Razorpay</strong> payment gateway systems. Your private financial tokens, banking details, or card signatures are processed natively inside a 256-bit secure SSL tunnel managed exclusively by Razorpay. Our platform servers never store, log, or observe your core financial credentials.
+        </p>
+
+        <!-- 4. DATA RETENTION AND DISCLOSURE -->
+        <h4 class="h5 policy-section-title">
+            <i class="bi bi-eye-slash-fill text-primary"></i> 4. Sharing & Data Boundaries
+        </h4>
+        <p class="text-muted small">
+            We do not sell, barter, or distribute your private profiles to advertising nodes or third-party syndicates. Your data profile factors are exclusively shared with fellow verified users inside your targeted college lane when matching handshakes are actively locked in.
+        </p>
+
+        <!-- 5. SECURITY ARCHITECTURE -->
+        <h4 class="h5 policy-section-title">
+            <i class="bi bi-lock-fill text-primary"></i> 5. Administrative Protections
+        </h4>
+        <p class="text-muted small">
+            Our platform framework uses security tokens, automated script validation flags, and active <strong>CSRF structural filters</strong> to block unauthorized accounts from harvesting your data arrays or manipulating profile structures.
+        </p>
+
+        <!-- 6. CONTACT AND SUPPORT COMPLIANCE -->
+        <h4 class="h5 policy-section-title">
+            <i class="bi bi-envelope-at-fill text-primary"></i> 6. Policy Questions & Rights
+        </h4>
+        <p class="text-muted small m-0">
+            You hold total administrative management control over your information profiles. If you wish to pull down your student history records, wipe chat data parameters from our backend logs, or modify structural identity errors, please file an escalation directly at our <a href="/contact" class="text-decoration-none fw-medium">Support Desk Channel</a> or reach our compliance system controllers at <code>collegeconnect@collegeco.in</code>.
+        </p>
+
+        <!-- BACKWARD LINK NAVIGATION FOOTER -->
+        <div class="mt-5 pt-3 border-top text-center">
+            <a href="/profile" class="btn btn-outline-primary px-4 py-2 rounded-3 small">
+                <i class="bi bi-arrow-left me-2"></i>Back to Account Console
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

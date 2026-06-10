@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact Support
+{% endblock %}
+
+{% block content %}
+<!-- Icon Pack Dependency Link -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<div class="card p-4 text-dark shadow-sm max-w-md mx-auto mt-5 mb-5">
+    
+    <!-- Header Block -->
+    <div class="text-center mb-4">
+        <div class="d-inline-flex align-items-center justify-content-center bg-danger text-white rounded-circle mb-2 shadow-sm" style="width: 56px; height: 56px;">
+            <i class="bi bi-headset fs-3"></i>
+        </div>
+        <h3 class="fw-bold mb-0 text-danger">Contact Support</h3>
+        <p class="text-muted small">Submit a help ticket directly to system administrators</p>
+    </div>
+
+    <!-- Contact Form Interface -->
+    <!-- Action targets placeholder fallback or administrative response loops -->
+    <form method="POST" action="/how_to_use">
+        <!-- Structural validation protection tag -->
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <!-- Full Name input field -->
+        <div class="mb-3">
+            <label class="form-label small fw-medium text-muted mb-1">Full Identity Name</label>
+            <div class="input-group">
+                <span class="input-group-text bg-light text-muted"><i class="bi bi-person"></i></span>
+                <input type="text" name="name" placeholder="John Doe" class="form-control" required>
+            </div>
+        </div>
+
+        <!-- Email input field -->
+        <div class="mb-3">
+            <label class="form-label small fw-medium text-muted mb-1">Registered Platform Email</label>
+            <div class="input-group">
+                <span class="input-group-text bg-light text-muted"><i class="bi bi-envelope"></i></span>
+                <input type="email" name="email" placeholder="name@domain.com" class="form-control" required autocomplete="email">
+            </div>
+        </div>
+
+        <!-- Issue Subject input selection -->
+        <div class="mb-3">
+            <label class="form-label small fw-medium text-muted mb-1">Inquiry Category Vector</label>
+            <div class="input-group">
+                <span class="input-group-text bg-light text-muted"><i class="bi bi-tags"></i></span>
+                <select name="subject" class="form-select" required>
+                    <option value="" disabled selected>Select an issue classification...</option>
+                    <option value="payment">Razorpay Payment / Token Verification Failure</option>
+                    <option value="senior">Senior Dispute / Referral Split Missing</option>
+                    <option value="account">Account Access / Node Profiling Problems</option>
+                    <option value="bug">System Bug Reporting & Interface Errors</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Message Body text input -->
+        <div class="mb-4">
+            <label class="form-label small fw-medium text-muted mb-1">Describe Your Issue</label>
+            <textarea name="message" rows="4" placeholder="Provide tracking numbers, transaction IDs, or connection details to help our team verify..." class="form-control text-sm" style="font-size: 0.9rem;" required></textarea>
+        </div>
+
+        <!-- Submission Trigger -->
+        <button type="submit" class="btn btn-danger w-100 py-2 fw-medium">
+            <i class="bi bi-send-check me-2"></i>Dispatch Ticket
+        </button>
+    </form>
+
+    <!-- Alternative Channels Indicator -->
+    <div class="mt-4 pt-3 border-top text-center text-muted context-small" style="font-size: 0.8rem;">
+        <span class="d-block mb-1"><i class="bi bi-clock me-1 text-primary"></i> Administrative Review Windows: 24/7 Mon-Sat</span>
+        <span>Direct Email Node: <a href="mailto:collegeconnect@collegeco.in" class="text-decoration-none fw-medium">collegeconnect@collegeco.in</a></span>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Incoming Requests - College Connect
+{% endblock %}
+
+{% block content %}
+<style>
+    .workspace-table-card {
+        background-color: var(--cc-surface) !important;
+        border: 1px solid var(--cc-border) !important;
+        border-radius: 14px !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+        overflow: hidden;
+    }
+    .cc-custom-table {
+        margin-bottom: 0 !important;
+        color: var(--cc-text-main) !important;
+        border-color: var(--cc-border) !important;
+        vertical-align: middle;
+    }
+    .cc-custom-table thead th {
+        background-color: #0b0f19 !important;
+        color: var(--cc-text-muted) !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        padding: 1rem 1.25rem !important;
+        border-bottom: 2px solid var(--cc-border) !important;
+    }
+    .cc-custom-table tbody tr {
+        border-bottom: 1px solid var(--cc-border);
+        transition: background-color 0.15s ease;
+    }
+    .cc-custom-table tbody tr:hover {
+        background-color: rgba(255, 255, 255, 0.02) !important;
+    }
+    .cc-custom-table tbody td {
+        padding: 1rem 1.25rem !important;
+        color: #e2e8f0 !important;
+        font-size: 0.9rem;
+    }
+    .cc-id-badge {
+        font-family: monospace;
+        background-color: rgba(255, 255, 255, 0.05);
+        color: var(--cc-text-muted);
+        padding: 0.2rem 0.5rem;
+        border-radius: 6px;
+        font-size: 0.8rem;
+    }
+    .btn-cc-accept {
+        background-color: rgba(16, 185, 129, 0.15) !important;
+        color: #34d399 !important;
+        border: 1px solid rgba(16, 185, 129, 0.3) !important;
+        font-weight: 600;
+        padding: 0.4rem 1rem !important;
+        border-radius: 8px !important;
+    }
+    .btn-cc-accept:hover {
+        background-color: #10b981 !important;
+        color: #ffffff !important;
+        border-color: #10b981 !important;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    }
+    .btn-cc-back {
+        background-color: transparent !important;
+        color: var(--cc-text-muted) !important;
+        border: 1px solid var(--cc-border) !important;
+        padding: 0.6rem 1.25rem !important;
+        border-radius: 10px !important;
+    }
+</style>
+
+<div class="row mt-2 mb-4">
+    <div class="col-12">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div>
+                <h1 class="h3 fw-bold text-white m-0" style="letter-spacing: -0.02em;">Incoming Requests</h1>
+                <p class="m-0 small mt-1" style="color: var(--cc-text-muted);">
+                    Review connection inquiries and authorization updates from newly admitted students.
+                </p>
+            </div>
+            <a href="/profile" class="btn btn-cc-back btn-sm d-none d-sm-inline-flex align-items-center gap-2">
+                <i class="bi bi-arrow-left"></i> Dashboard Hub
+            </a>
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert bg-primary bg-opacity-10 border-0 text-info d-flex align-items-center gap-2 shadow-sm mb-4 p-3 rounded-3">
+                        <i class="bi bi-info-circle-fill"></i>
+                        <div>{{ message }}</div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if requests %}
+        <div class="card workspace-table-card">
+            <div class="table-responsive">
+                <table class="table cc-custom-table align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 80px;">ID</th>
+                            <th scope="col">Student Applicant</th>
+                            <th scope="col">Academic Track</th>
+                            <th scope="col">Campus Hub Node</th>
+                            <th scope="col">Submission Date</th>
+                            <th scope="col" class="text-end" style="width: 140px;">Action Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for request in requests %}
+                        <tr>
+                            <td><span class="cc-id-badge">#{{ request[0] }}</span></td>
+                            <td class="fw-semibold text-white">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; font-size: 0.85rem;">
+                                        {{ request[1][0] | upper if request[1] else 'S' }}
+                                    </div>
+                                    <span>{{ request[1] }}</span>
+                                </div>
+                            </td>
+                            <td>{{ request[2] }}</td>
+                            <td><i class="bi bi-building text-secondary small me-1"></i> {{ request[3] }}</td>
+                            <td class="text-white-50 font-monospace" style="font-size: 0.85rem;">{{ request[4] }}</td>
+                            <td class="text-end">
+                                <form action="/accept_request/{{ request[0] }}" method="POST" class="d-inline-block">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-cc-accept btn-sm d-inline-flex align-items-center gap-1.5">
+                                        <i class="bi bi-check2-circle"></i> Accept
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% else %}
+        <div class="card p-5 text-center workspace-table-card">
+            <div class="d-inline-flex align-items-center justify-content-center bg-warning bg-opacity-10 text-warning rounded-circle mb-3 mx-auto" style="width: 64px; height: 64px;">
+                <i class="bi bi-inbox fs-2"></i>
+            </div>
+            <h3 class="h5 fw-bold text-white mb-2">No Inquiries Found</h3>
+            <p class="mx-auto mb-0 text-wrap text-white-50 small" style="max-width: 380px;">
+                Your pipeline is currently clear. When prospective candidates submit integration requests, they will show up here.
+            </p>
+        </div>
+        {% endif %}
+
+        <div class="d-block d-sm-none mt-4">
+            <a href="/profile" class="btn btn-cc-back w-100 d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-arrow-left"></i> Dashboard Hub
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

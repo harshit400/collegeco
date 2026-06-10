@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Connection Fee Processing - College Connect
+{% endblock %}
+
+{% block content %}
+<style>
+    .checkout-card {
+        background-color: var(--cc-surface) !important;
+        border: 1px solid var(--cc-border) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35) !important;
+        overflow: hidden;
+    }
+    .checkout-header {
+        background-color: #0b0f19 !important;
+        border-bottom: 1px solid var(--cc-border) !important;
+        padding: 1.25rem 1.5rem !important;
+    }
+    .currency-display {
+        font-size: 3rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: #ffffff;
+    }
+    .btn-checkout-trigger {
+        background-color: #10b981 !important;
+        border: none !important;
+        color: #ffffff !important;
+        font-weight: 600;
+        padding: 0.9rem !important;
+        border-radius: 12px !important;
+        transition: all 0.2s ease;
+    }
+    .btn-checkout-trigger:hover {
+        background-color: #059669 !important;
+        box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
+    }
+</style>
+
+<div class="row justify-content-center my-5">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card checkout-card shadow">
+            
+            <div class="checkout-header d-flex align-items-center gap-2.5">
+                <div class="rounded-circle bg-success bg-opacity-10 text-success d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                    <i class="bi bi-shield-lock-fill fs-5"></i>
+                </div>
+                <h4 class="m-0 fw-bold text-white h5">Gateway Checkout Integration</h4>
+            </div>
+
+            <div class="card-body p-4 p-sm-5 text-center">
+                <span class="text-uppercase small fw-bold tracking-wider text-white-50" style="letter-spacing: 0.08em; color: var(--cc-text-muted) !important;">
+                    Platform Access Micro-Charge
+                </span>
+                
+                <div class="currency-display my-2">₹50</div>
+
+                <p class="small text-white-50 mx-auto mb-4 text-wrap" style="max-width: 320px; line-height: 1.5; color: var(--cc-text-muted) !important;">
+                    Process a one-time administrative connection fee to clear system parameters and initialize live pipelines to upperclassmen seniors.
+                </p>
+
+                <div class="p-3 bg-dark bg-opacity-40 rounded-3 text-start border border-secondary border-opacity-10 mb-4">
+                    <div class="d-flex gap-2.5 text-white-50 small">
+                        <i class="bi bi-patch-check-fill text-success fs-5"></i>
+                        <div>
+                            <span class="d-block text-white fw-semibold mb-0.5">Verified Institutional Protection</span>
+                            Encrypted, secure transactional processing powered dynamically via the official Razorpay processing framework ecosystem.
+                        </div>
+                    </div>
+                </div>
+
+                <button id="rzp-button" class="btn btn-success w-100 btn-checkout-trigger d-flex align-items-center justify-content-center gap-2">
+                    Execute Secure Payment Gateway <i class="bi bi-arrow-right-short fs-4"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- RAZORPAY BACKGROUND HANDLER ENGINE CONTAINER -->
+<form action="/payment_success" method="POST" id="payment-form">
+    <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id">
+    <input type="hidden" name="razorpay_order_id" id="razorpay_order_id">
+    <input type="hidden" name="razorpay_signature" id="razorpay_signature">
+</form>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var options = {
+        "key": "{{ razorpay_key }}",
+        "amount": "{{ order['amount'] }}",
+        "currency": "INR",
+        "name": "College Connect",
+        "description": "Connection Fee Integration Trace",
+        "order_id": "{{ order['id'] }}",
+        "handler": function (response) {
+            document.getElementById("razorpay_payment_id").value = response.razorpay_payment_id;
+            document.getElementById("razorpay_order_id").value = response.razorpay_order_id;
+            document.getElementById("razorpay_signature").value = response.razorpay_signature;
+            document.getElementById("payment-form").submit();
+        },
+        "theme": {
+            "color": "#2563eb"
+        }
+    };
+
+    var rzp = new Razorpay(options);
+
+    document.getElementById("rzp-button").onclick = function(e) {
+        rzp.open();
+        e.preventDefault();
+    };
+</script>
+{% endblock %}

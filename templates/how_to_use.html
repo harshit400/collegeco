@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Help Center
+{% endblock %}
+
+{% block content %}
+<!-- Icon Pack Dependency Link -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<div class="card p-4 text-dark shadow-sm max-w-4xl mx-auto mt-4 mb-5">
+    
+    <!-- Header Block -->
+    <div class="text-center mb-5 border-bottom pb-4">
+        <div class="d-inline-flex align-items-center justify-content-center bg-primary text-white rounded-circle mb-2 shadow-sm" style="width: 56px; height: 56px;">
+            <i class="bi bi-question-diamond fs-3"></i>
+        </div>
+        <h2 class="fw-bold text-primary mb-1">Knowledge Hub & Help Center</h2>
+        <p class="text-muted small">Everything you need to navigate the student referral matrix</p>
+    </div>
+
+    <!-- Quick Start Walkthrough -->
+    <div class="mb-5">
+        <h4 class="fw-bold mb-3 text-secondary"><i class="bi bi-lightning-charge-fill me-2 text-warning"></i>Quick Start System Guides</h4>
+        <div class="row g-3">
+            <div class="col-12 col-md-6">
+                <div class="p-3 bg-light rounded border h-100">
+                    <h5 class="fw-bold fs-6 text-dark mb-2">For New Applicants</h5>
+                    <p class="text-muted small mb-0">Create an account, process the secure ₹50 Razorpay connection token, match with a verified campus senior, utilize their reference link for college admission, and collect your 50/50 cash-back reward split.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="p-3 bg-light rounded border h-100">
+                    <h5 class="fw-bold fs-6 text-dark mb-2">For College Seniors</h5>
+                    <p class="text-muted small mb-0">Complete registration profiles, monitor your request review board, accept incoming candidate pings, provide your direct institutional referral tracking codes via chat, and claim rewards to split with your junior.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Accordion Block -->
+    <div>
+        <h4 class="fw-bold mb-3 text-secondary"><i class="bi bi-shield-check me-2 text-success"></i>Frequently Asked Questions</h4>
+        <div class="accordion" id="helpAccordion">
+            
+            <!-- Question 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-medium" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        How is the 50/50 referral split handled?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#helpAccordion">
+                    <div class="accordion-body text-muted small">
+                        Referral rewards are issued directly by your college management to the senior who referred you. Once the college completes the payout cycle, the senior is structurally required by platform terms to transfer exactly half (50%) of that reward value back to you.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed fw-medium" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        What happens if my connection request expires?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#helpAccordion">
+                    <div class="accordion-body text-muted small">
+                        All broadcast pings carry a strict 1-hour mechanical timer. If no campus senior locks the room within 60 minutes, the query times out. This protects system speeds. You can re-initiate a connection transaction to ping a completely fresh queue.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed fw-medium" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Is my Razorpay transaction safe?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#helpAccordion">
+                    <div class="accordion-body text-muted small">
+                        Yes. All financial handshakes are processed inside an encrypted, 256-bit SSL secure token tunnel handled directly by Razorpay infrastructure. Your sensitive card or UPI information never touches our local data logs.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Redirect Support Footer -->
+    <div class="text-center mt-5 border-t pt-4">
+        <p class="text-muted small mb-3">Can't find what you are looking for?</p>
+        <a href="/contact" class="btn btn-outline-primary px-4 py-2">
+            <i class="bi bi-chat-left-dots me-2"></i>Contact Help Desk
+        </a>
+    </div>
+
+</div>
+{% endblock %}

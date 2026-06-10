@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard Profile - College Connect
+{% endblock %}
+
+{% block content %}
+<style>
+    .profile-card {
+        background-color: var(--cc-surface) !important;
+        border: 1px solid var(--cc-border) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3) !important;
+    }
+    .profile-input-readonly {
+        background-color: rgba(15, 23, 42, 0.6) !important;
+        border: 1px solid var(--cc-border) !important;
+        color: var(--cc-text-muted) !important;
+        border-radius: 10px !important;
+        padding: 0.7rem 1rem !important;
+        cursor: not-allowed;
+    }
+    .dashboard-badge {
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.85rem;
+    }
+</style>
+
+<div class="container my-2">
+    <div class="row g-4">
+
+        <div class="col-12 col-md-5 col-lg-4 order-md-2">
+            <div class="card p-4 profile-card h-100 d-flex flex-column justify-content-between">
+                <div>
+                    <h4 class="h5 fw-bold text-white mb-3">System Actions</h4>
+                    <p class="small text-white-50 mb-4" style="color: var(--cc-text-muted) !important;">
+                        Manage your network requests, active chat channels, and dynamic verification credentials.
+                    </p>
+
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-info bg-primary bg-opacity-10 border-0 text-info small rounded-3 p-3 mb-3 d-flex align-items-center gap-2">
+                                    <i class="bi bi-info-circle-fill"></i>
+                                    <div>{{ message }}</div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    {% if user[7] == "New Admission" %}
+                        <div class="p-3 rounded-3 mb-3 border" style="background-color: #0b0f19; border-color: var(--cc-border) !important;">
+                            <span class="d-block small text-white-50 mb-2">Network Status Link</span>
+                            {% if connected %}
+                                <div class="dashboard-badge bg-success bg-opacity-10 text-success border border-success border-opacity-20 text-center">
+                                    <i class="bi bi-link-45deg"></i> Linked to Upperclassman
+                                </div>
+                            {% elif not senior_available %}
+                                <div class="dashboard-badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-20 text-center">
+                                    <i class="bi bi-exclamation-triangle-fill"></i> No Seniors Live
+                                </div>
+                            {% elif has_paid %}
+                                <a href="/send_request" class="btn btn-success w-100 fw-bold rounded-3 py-2">
+                                    <i class="bi bi-paperplane-fill me-1"></i> Send Connection Invariant
+                                </a>
+                            {% else %}
+                                <a href="/pay_request" class="btn btn-warning w-100 fw-bold text-dark rounded-3 py-2">
+                                    <i class="bi bi-credit-card-fill me-1"></i> Pay ₹50 & Connect
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="d-flex flex-column gap-2 mt-3 pt-3 border-top" style="border-color: var(--cc-border) !important;">
+                    <a href="/status" class="btn btn-primary bg-opacity-10  border-0 py-2.5 fw-semibold rounded-3 text-start px-3 d-flex align-items-center justify-content-between">
+                        <span><i class="bi bi-file-earmark-text me-2"></i> Tracking Monitor</span>
+                        <i class="bi bi-chevron-right small"></i>
+                    </a>
+
+                    <a href="/chat_list" class="btn btn-dark bg-opacity-20 border-0 text-white-50 py-2.5 fw-semibold rounded-3 text-start px-3 d-flex align-items-center justify-content-between">
+                        <span><i class="bi bi-chat-square-text me-2"></i> Real-Time Messengers</span>
+                        <i class="bi bi-chevron-right small"></i>
+                    </a>
+
+                    {% if session.get('admission_type') == "Old Student" %}
+                    <a href="/requests" class="btn btn-secondary bg-opacity-10 text-white border-0 py-2.5 fw-semibold rounded-3 text-start px-3 d-flex align-items-center justify-content-between">
+                        <span><i class="bi bi-git-pull-request me-2"></i> Review Board Inbound</span>
+                        <i class="bi bi-chevron-right small"></i>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-7 col-lg-8 order-md-1">
+            <div class="card p-4 p-sm-5 profile-card">
+                <div class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom" style="border-color: var(--cc-border) !important;">
+                    <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center fw-bold fs-3" style="width: 64px; height: 64px;">
+                        {{ user[1][0] | upper if user[1] else 'U' }}
+                    </div>
+                    <div>
+                        <h2 class="h3 fw-bold text-white m-0" style="letter-spacing: -0.02em;">{{ user[1] }}</h2>
+                        <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-10 mt-1 px-2.5 py-1 rounded small">
+                            {{ user[7] }} Node
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-12 col-sm-6">
+                        <label class="form-label small fw-semibold text-white-50 mb-1">Full Identity Name</label>
+                        <input type="text" value="{{ user[1] }}" class="form-control profile-input-readonly" readonly>
+                    </div>
+
+                    <div class="col-12 col-sm-6">
+                        <label class="form-label small fw-semibold text-white-50 mb-1">Account Vector Email</label>
+                        <input type="email" value="{{ user[2] }}" class="form-control profile-input-readonly" readonly>
+                    </div>
+
+                    <div class="col-12 col-sm-6">
+                        <label class="form-label small fw-semibold text-white-50 mb-1">Secure Contact Line</label>
+                        <input type="text" value="{{ user[3] }}" class="form-control profile-input-readonly" readonly>
+                    </div>
+
+                    <div class="col-12 col-sm-6">
+                        <label class="form-label small fw-semibold text-white-50 mb-1">Affiliated Institutional Cluster</label>
+                        <input type="text" value="{{ user[4] }}" class="form-control profile-input-readonly" readonly>
+                    </div>
+
+                    <div class="col-12 col-sm-6">
+                        <label class="form-label small fw-semibold text-white-50 mb-1">Academic Curriculum Track</label>
+                        <input type="text" value="{{ user[5] }}" class="form-control profile-input-readonly" readonly>
+                    </div>
+
+                    <div class="col-6 col-sm-3">
+                        <label class="form-label small fw-semibold text-white-50 mb-1">Term Stream Year</label>
+                        <input type="text" value="{{ user[6] if user[6] else 'N/A' }}" class="form-control profile-input-readonly" readonly>
+                    </div>
+
+                    <div class="col-6 col-sm-3">
+                        <label class="form-label small fw-semibold text-white-50 mb-1">Classification Tag</label>
+                        <input type="text" value="{{ user[7] }}" class="form-control profile-input-readonly" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
